@@ -1,0 +1,102 @@
+:root {
+    --bounce-easing: linear(0, 0.004, 0.016, 0.035, 0.063, 0.098, 0.141 13.6%, 0.25, 0.391, 0.563, 0.765,
+            1, 0.891 40.9%, 0.848, 0.813, 0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785,
+            0.813, 0.848, 0.891 68.2%, 1 72.7%, 0.973, 0.953, 0.941, 0.938, 0.941, 0.953,
+            0.973, 1, 0.988, 0.984, 0.988, 1);
+}
+
+ul li {
+    list-style: none;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.card {
+    height: auto;
+    width: 100%;
+    max-width: 50px;
+    min-width: 10vw;
+    aspect-ratio: 2/3;
+    view-transition-class: card;
+    border-radius: 1rem;
+    corner-shape: squircle;
+}
+
+#card1 {
+    view-transition-name: card1;
+    background-color: tan;
+}
+
+#card2 {
+    view-transition-name: card2;
+    background-color: khaki;
+}
+
+#card3 {
+    view-transition-name: card3;
+    background-color: thistle;
+}
+
+#card4 {
+    view-transition-name: card4;
+    background-color: wheat;
+}
+
+.deleteBtn {
+    position: absolute;
+    bottom: -0.5rem;
+    right: -0.5rem;
+    background-color: aliceblue;
+    color: white;
+    border: 4px solid;
+    border-radius: 100%;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+
+    &:hover {
+        background-color: red;
+        color: white;
+    }
+}
+
+@keyframes remove-card {
+    0% {
+        translate: 0 0;
+        opacity: 1;
+    }
+
+    100% {
+
+        opacity: 0;
+        translate: 0 -200px;
+    }
+}
+
+::view-transition-old(.card):only-child {
+    animation: remove-card 0.5s ease-in-out;
+}
+
+::view-transition-group(.card) {
+    animation-timing-function: var(--bounce-easing);
+    animation-duration: 0.5s;
+
+}
+
+/* ::view-transition-new(.card) {
+    /* animation-timing-function: var(--bounce-easing); */
+/* animation-duration: 0.5s;
+     */
+/* animation: cubic-bezier(1, 0, 0, 1) 0.5s;
+     */
+
+/* transform: scale(5); */
+/* } */
